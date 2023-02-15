@@ -31,4 +31,4 @@ const readAndAppend = (fileDest, newNote) => {
     });
 };
 
-module.exports = {readDBFile, readFromFile, writeToFile, readAndAppend }
+module.exports = { readDBFile, readFromFile, writeToFile, readAndAppend }
