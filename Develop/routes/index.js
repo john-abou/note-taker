@@ -1,0 +1,1 @@
+// Static files from /api/notes
