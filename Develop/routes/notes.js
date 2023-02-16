@@ -6,5 +6,7 @@ const notes = require('express').Router()
 
 //
 notes.get('/', (req,res) => {
+    // GET /notes should return the notes.html file
+    res.status(200).location('../public/notes.html');
 })
 

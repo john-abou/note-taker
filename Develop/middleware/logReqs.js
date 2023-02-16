@@ -17,3 +17,5 @@ const logReqs = (req, res, next) => {
     // Call next so the server continues to the requested path after logging the request information
     next();
 }
+
+module.exports = logReqs;
