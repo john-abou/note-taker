@@ -18,11 +18,16 @@ const readAndAppend = (fileDest, newNote) => {
             console.error(err)
         } else {
             // parse the string data that is read from the file
-            const parsedDated = JSON.parse(data);
+            const parsedData = JSON.parse(data);
             parsedData.push(newNote);
             writeToFile(fileDest, parsedData);
         }
     });
 };
 
-module.exports = { readFromFile, writeToFile, readAndAppend }
+const uuid = () =>
+Math.floor((1 + Math.random()) * 0x10000)
+  .toString(16)
+  .substring(1);
+
+module.exports = { readFromFile, writeToFile, readAndAppend, uuid }
