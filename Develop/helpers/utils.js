@@ -4,13 +4,6 @@ const util = require('util');
 // Promisfy the fs.readfile so it becomes a promise object
 const readFromFile = util.promisify(fs.readFile);
 
-// Function to read file
-const readDB = (fileDest) => {
-    return fs.readFile(fileDest, 'utf8', (err) => err ? console.error(err) : console.log('read the file'));
-} 
-
-const readDBFile = util.promisify(readDB);
-
 // Function to write to file
 const writeToFile = (fileDest, fileContent) => {
     // stringify parameters adding for proper formatting 
@@ -32,4 +25,4 @@ const readAndAppend = (fileDest, newNote) => {
     });
 };
 
-module.exports = { readDBFile, readFromFile, writeToFile, readAndAppend }
+module.exports = { readFromFile, writeToFile, readAndAppend }
