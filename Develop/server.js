@@ -33,7 +33,7 @@ app.get('/notes', (req, res) => {
 
 // Wildcard route to send users a 404 msg
 app.get('*', (req, res) => {
-  res.status(404).send(`Sorry, the requested resource was not found.`)
+  res.sendFile(path.join(__dirname, '/public/index.html'));
 })
 
 // Set the server to listen for the given port number

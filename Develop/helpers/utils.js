@@ -1,4 +1,5 @@
 const fs = require('fs');
+const { parse } = require('path');
 const util = require('util');
 
 // Promisfy the fs.readfile so it becomes a promise object
@@ -33,15 +34,17 @@ const readAndDelete = (fileDest, idToDelete ) => {
         } else {
             // parse the string data that is read from the file
             const parsedData = JSON.parse(data);
+            console.log(parsedData);
 
             // Loop through the array to determine which object has the given id
-            parsedData.forEach((array) => {
-                if (array.id === idToDelete ) {
+            for (let i = 0; i < parsedData.length; i++) {
+                if (parsedData[i].id == idToDelete ) {
                     // Use splice to get rid of the array at the index where the id matches and update the file
-                    const updatedData = parsedData.splice(array, 1)
-                    writeToFile(updatedData);
+                    parsedData.splice( i, 1 );
+                    console.log(parsedData);
+                    writeToFile(fileDest, parsedData);
                 }
-            })
+            }
         }
     });
 }
