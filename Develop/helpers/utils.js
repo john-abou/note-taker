@@ -15,7 +15,7 @@ const writeToFile = (fileDest, fileContent) => {
 const readAndAppend = (fileDest, newNote) => {
     fs.readFile(fileDest, 'utf8', (err, data) => {
         if (err) {
-            console.error(err)
+            console.error(err);
         } else {
             // parse the string data that is read from the file
             const parsedData = JSON.parse(data);
@@ -25,9 +25,30 @@ const readAndAppend = (fileDest, newNote) => {
     });
 };
 
+// function to read and delete a note from the file 
+const readAndDelete = (fileDest, idToDelete ) => {
+    fs.readFile(fileDest, 'utf8', (err, data) => {
+        if (err) {
+            console.error(err);
+        } else {
+            // parse the string data that is read from the file
+            const parsedData = JSON.parse(data);
+
+            // Loop through the array to determine which object has the given id
+            parsedData.forEach((array) => {
+                if (array.id === idToDelete ) {
+                    // Use splice to get rid of the array at the index where the id matches and update the file
+                    const updatedData = parsedData.splice(array, 1)
+                    writeToFile(updatedData);
+                }
+            })
+        }
+    });
+}
+
 const uuid = () =>
 Math.floor((1 + Math.random()) * 0x10000)
   .toString(16)
   .substring(1);
 
-module.exports = { readFromFile, writeToFile, readAndAppend, uuid }
+module.exports = { readFromFile, writeToFile, readAndAppend, readAndDelete, uuid }

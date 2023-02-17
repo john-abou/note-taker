@@ -1,5 +1,5 @@
 // Import the helper functions to read/write to files
-const { readFromFile, writeToFile, readAndAppend, uuid } = require('../helpers/utils');
+const { readFromFile, writeToFile, readAndAppend, readAndDelete, uuid } = require('../helpers/utils');
 
 // Define the router for notes -- linked to index (static files at path /api/notes) 
 const notes = require('express').Router();
@@ -18,7 +18,7 @@ notes.post('/', (req,res) => {
         const newNote = {
             title,
             text,
-            note_id: uuid()
+            id: uuid()
         };
 
         // read the file and append the new note to the db file
@@ -31,6 +31,17 @@ notes.post('/', (req,res) => {
         res.status(500).send('Incomplete information in your request. Server error.')
     }
 });
+
+notes.delete('/:id', (req, res) => {
+    // Deconstruct the response body to get the id
+    const id = req.params.id 
+    if ( id ) {
+        readAndDelete('./db/db.json', id);
+        res.send(`Successfully deleted the note with the id: ${id}`);
+    } else {
+        res.status(404).send('ID not found')
+    }
+})
 
 
 

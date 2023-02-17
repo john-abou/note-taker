@@ -7,11 +7,11 @@
     {
         "title": "Test Title",
         "text": "Test text",
-        "note_id": "b646"
+        "id": "b646"
     },
     {
         "title": "Testing 123",
         "text": "hello world",
-        "note_id": "b1d0"
+        "id": "b1d0"
     }
 ]
