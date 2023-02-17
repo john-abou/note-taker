@@ -1,5 +1,5 @@
 // Static files from /api/notes
-const express = require('Express');
+const express = require('express');
 const app = express();
 
 //Import and initialize the modular router for /notes 
