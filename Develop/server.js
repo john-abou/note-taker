@@ -23,7 +23,12 @@ app.use(express.static('public'));
 
 // Set the response to a GET request for the home page
 app.get('/', (req, res) => {
-  res.sendFile('/public/index.html');
+  res.sendFile(path.join(__dirname, '/public/index.html'));
+})
+
+// Set the response to a GET request for the notes page
+app.get('/notes', (req, res) => {
+  res.sendFile(path.join(__dirname, '/public/notes.html'));
 })
 
 // Wildcard route to send users a 404 msg
